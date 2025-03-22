@@ -1,12 +1,12 @@
 {
-    "frequency_test": 0.0132,
+    "frequency_test": 0.002,
     "runs_test": {
-        "runs": 5040,
-        "expected_runs": 5000.1288,
-        "z_value": 0.7976028664023523,
-        "p_value": 0.42510098710655164
+        "runs": 4987,
+        "expected_runs": 5000.98,
+        "z_value": -0.27961510101920073,
+        "p_value": 0.7797728201358995
     },
-    "autocorrelation_lag_1": -0.0079007900790079,
-    "entropy": 0.9998743087578157,
-    "timestamp": "2025-03-22T14:49:34.554951"
+    "autocorrelation_lag_1": 0.0027002700270027003,
+    "entropy": 0.9999971146079947,
+    "timestamp": "2025-03-22T15:24:54.326823"
 }
