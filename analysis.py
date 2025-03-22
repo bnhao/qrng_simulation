@@ -69,6 +69,56 @@ def runs_test(bits: np.ndarray) -> dict:
         "p_value": p_value
     }
 
+def autocorrelation_test(bits: np.ndarray, lag: int) -> float:
+    """
+    Compute the autocorrelation of the bit sequence for a given lag.
+    
+    Args:
+        bits (np.ndarray): Array of bits.
+        lag (int): The lag for which to calculate autocorrelation.
+    
+    Returns:
+        float: The autocorrelation coefficient.
+    """
+    if lag >= len(bits):
+        raise ValueError("Lag must be less than the number of bits.")
+
+    # Convert bits from {0,1} to {-1,1}
+    x = 2 * bits - 1
+    n = len(x)
+    
+    # Compute autocorrelation sum for the given lag
+    autocorr_sum = np.sum(x[:n - lag] * x[lag:])
+    autocorr = autocorr_sum / (n - lag)
+    return autocorr
+
+def calculate_entropy(bits: np.ndarray) -> float:
+    """
+    Calculate the Shannon entropy of a binary sequence.
+    
+    Args:
+        bits (np.ndarray): Array of bits (0s and 1s).
+    
+    Returns:
+        float: The Shannon entropy in bits.
+    """
+    n = len(bits)
+    if n == 0:
+        return 0.0
+
+    # Calculate probabilities for 0 and 1
+    p1 = np.sum(bits) / n
+    p0 = 1 - p1
+
+    # Avoid log2(0) by defining a safe log function
+    def safe_log2(p):
+        return np.log2(p) if p > 0 else 0
+
+    entropy = - (p1 * safe_log2(p1) + p0 * safe_log2(p0))
+    return entropy
+
+
+
 # Test the frequency test if running this file directly
 if __name__ == '__main__':
     from simulation import generate_random_bits
@@ -78,3 +128,9 @@ if __name__ == '__main__':
 
     run_results = runs_test(bits)
     print(f"Runs test result: {run_results['runs']}")
+
+    autocorrelation = autocorrelation_test(bits, 1)
+    print(f"Autocorrelation test result: {autocorrelation}")
+
+    entropy = calculate_entropy(bits)
+    print(f"Entropy test result: {entropy}")

@@ -1,0 +1,12 @@
+{
+    "frequency_test": 0.0132,
+    "runs_test": {
+        "runs": 5040,
+        "expected_runs": 5000.1288,
+        "z_value": 0.7976028664023523,
+        "p_value": 0.42510098710655164
+    },
+    "autocorrelation_lag_1": -0.0079007900790079,
+    "entropy": 0.9998743087578157,
+    "timestamp": "2025-03-22T14:49:34.554951"
+}
